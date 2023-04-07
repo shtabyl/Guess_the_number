@@ -1,0 +1,53 @@
+#”гадайка чисел
+import math
+import random
+
+n = random.randint(1, 100)
+to_guess = random.randint(1, 100)
+print('ƒобро пожаловать в числовую угадайку!')
+print('я загадал число от 1 до', n)
+print(' акое число загадано?')
+lives = math.ceil(math.log(n, 2))
+print(' оличество попыток:', lives)
+result = '0'
+
+def is_valid(check):
+    return check.isdigit()
+
+counter = 0    
+while result != to_guess:
+    result = input()
+    if is_valid(result):
+        if int(result) > to_guess:
+            counter += 1
+            lives -= 1
+            if lives == 0:
+                print('ѕопытки закончились. ѕопробуйте сыграть еще раз.')
+                break
+            else:
+                print('—лишком мало, попробуйте еще раз:')
+                print('ќсталось попыток:', lives)
+        elif int(result) < to_guess:
+            counter += 1
+            lives -= 1
+            if lives == 0:
+                print('ѕопытки закончились. ѕопробуйте сыграть еще раз.')
+                break
+            else:
+                print('—лишком мало, попробуйте еще раз:')
+                print('ќсталось попыток:', lives)
+        else:
+            counter += 1
+            print('¬ы угадали число за', counter, 'попыток. ѕоздравл€ем!')
+            print('—пасибо, что играли в числовую угадайку. ≈ще увидимс€!')
+            break
+    else:
+        counter += 1
+        lives -= 1
+        if lives == 0:
+            print('ѕопытки закончились. ѕопробуйте сыграть еще раз.')
+            break
+        else:
+            print('ќшибка. ѕожалуйста, введите число от 1 до 100.')
+            print('ќсталось попыток:', lives)
+            
